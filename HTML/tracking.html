@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking Pengiriman - SITTA</title>
+
+  <!-- CSS utama -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Data dan Script -->
+  <script defer src="../js/data.js"></script>
+  <script defer src="../js/script.js"></script>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="../logo-ut.jpg" alt="Logo UT" class="sidebar-logo">
+      <h2>SITTA</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="stok.html">📦 Stok</a>
+      <a href="tracking.html" class="active">🚚 Tracking</a>
+      <a href="index.html" id="logoutBtn">🚪 Logout</a>
+    </nav>
+  </aside>
+
+  <!-- KONTEN UTAMA -->
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Tracking Pengiriman</h1>
+      <div class="user-info">
+        <span id="userName">Admin SITTA</span>
+        <img src="../logo.jpg" alt="User" class="user-avatar">
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <h2>Cari Status Pengiriman</h2>
+        <form id="trackingForm" class="form-inline">
+          <input type="text" id="noDO" class="input-text" placeholder="Masukkan Nomor DO (contoh: 2023001234)" required>
+          <button type="submit" class="btn-primary">Cari</button>
+        </form>
+      </div>
+
+      <div id="trackingResult" class="card hidden"></div>
+    </section>
+  </main>
+</body>
+</html>

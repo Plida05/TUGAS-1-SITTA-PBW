@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard | SITTA</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/script.js"></script>
+</head>
+<body class="dashboard-sidebar">
+
+  <!-- Sidebar -->
+  <aside class="sitta-sidebar" id="appSidebar" aria-label="Sidebar navigasi">
+    <div class="sidebar-top">
+      <img src="../logo.jpg" alt="Logo UT" class="sidebar-logo">
+      <h2 class="site-title">SITTA</h2>
+    </div>
+
+    <nav class="sidebar-nav" role="navigation">
+      <button class="nav-item" data-target="stok.html">📘 Informasi Bahan Ajar</button>
+      <button class="nav-item" data-target="tracking.html">🚚 Tracking Pengiriman</button>
+      <button class="nav-item" id="laporanToggle">📊 Laporan ▾</button>
+
+      <div class="nav-submenu hidden" id="laporanSub">
+        <button class="nav-subitem" onclick="alert('Monitoring DO belum implement')">• Monitoring Progress DO</button>
+        <button class="nav-subitem" onclick="alert('Rekap Bahan Ajar belum implement')">• Rekap Bahan Ajar</button>
+      </div>
+
+      <button class="nav-item" data-target="#" onclick="alert('Histori belum implement')">📜 Histori Transaksi</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <small id="greetingSidebar"></small>
+      <button class="btn-ghost small" id="logoutBtn">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main-area">
+    <header class="main-header">
+      <button id="sidebarToggle" class="hamburger" aria-label="toggle sidebar">☰</button>
+      <div class="header-center">
+        <h1 id="greetingMain">Selamat datang</h1>
+        <p class="muted">Sistem Pemesanan Bahan Ajar — Universitas Terbuka</p>
+      </div>
+      <div class="header-actions">
+        <button id="profileBtn" class="btn-ghost small">Profil</button>
+      </div>
+    </header>
+
+    <section class="content-cards" id="contentArea">
+      <!-- contoh konten default -->
+      <article class="card">
+        <h3>Ringkasan</h3>
+        <p>Selamat datang di dashboard SITTA. Pilih menu di sidebar untuk memulai.</p>
+      </article>
+
+      <article class="card">
+        <h3>Statistik Sederhana</h3>
+        <ul>
+          <li>Jumlah bahan ajar: <strong>120</strong></li>
+          <li>Pesanan hari ini: <strong>8</strong></li>
+          <li>Pengiriman aktif: <strong>3</strong></li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="dashboard-footer">
+      <small>© 2025 Universitas Terbuka</small>
+    </footer>
+  </div>
+
+</body>
+</html>

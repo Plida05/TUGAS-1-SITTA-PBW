@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stok Bahan Ajar - SITTA</title>
+
+  <!-- CSS utama -->
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- JS data dan logika -->
+  <script defer src="../js/data.js"></script>
+  <script defer src="../js/script.js"></script>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="../logo.jpg" alt="Logo UT" class="sidebar-logo" />
+      <h2>SITTA</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="stok.html" class="active">📦 Stok</a>
+      <a href="tracking.html">🚚 Tracking</a>
+      <a href="index.html" id="logoutBtn">🚪 Logout</a>
+    </nav>
+  </aside>
+
+  <!-- KONTEN UTAMA -->
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Stok Bahan Ajar</h1>
+      <div class="user-info">
+        <span id="userName">Admin SITTA</span>
+        <img src="../logo.jpg" alt="User" class="user-avatar" />
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <h2>Daftar Stok Buku Bahan Ajar</h2>
+
+        <!-- 🔍 SEARCH & FILTER -->
+        <div class="filter-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari berdasarkan nama atau kode..."
+            class="input-text"
+          />
+          <select id="sortSelect" class="input-text">
+            <option value="default">Urutkan Berdasarkan</option>
+            <option value="stokDesc">Stok Terbanyak</option>
+            <option value="stokAsc">Stok Tersedikit</option>
+          </select>
+        </div>
+
+        <!-- 📋 TABEL DATA -->
+        <table id="stokTable" class="data-table">
+          <thead>
+            <tr>
+              <th>Kode Lokasi</th>
+              <th>Kode Barang</th>
+              <th>Nama Barang</th>
+              <th>Jenis</th>
+              <th>Edisi</th>
+              <th>Stok</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data diisi lewat script -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableBody = document.querySelector("#stokTable tbody");
+      const searchInput = document.getElementById("searchInput");
+      const sortSelect = document.getElementById("sortSelect");
+
+      let bahanAjar = [...dataBahanAjar];
+
+      function renderTable(data) {
+        tableBody.innerHTML = "";
+        if (data.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Tidak ada data ditemukan.</td></tr>`;
+          return;
+        }
+
+        data.forEach(item => {
+          const row = `
+            <tr>
+              <td>${item.kodeLokasi}</td>
+              <td>${item.kodeBarang}</td>
+              <td>${item.namaBarang}</td>
+              <td>${item.jenisBarang}</td>
+              <td>${item.edisi}</td>
+              <td>${item.stok}</td>
+            </tr>
+          `;
+          tableBody.insertAdjacentHTML("beforeend", row);
+        });
+      }
+
+      // Render awal
+      renderTable(bahanAjar);
+
+      // 🔍 Pencarian
+      searchInput.addEventListener("keyup", () => {
+        const keyword = searchInput.value.toLowerCase();
+        const filtered = bahanAjar.filter(item =>
+          item.namaBarang.toLowerCase().includes(keyword) ||
+          item.kodeBarang.toLowerCase().includes(keyword)
+        );
+        renderTable(filtered);
+      });
+
+      // 🔽 Pengurutan stok
+      sortSelect.addEventListener("change", () => {
+        let sorted = [...bahanAjar];
+        if (sortSelect.value === "stokDesc") {
+          sorted.sort((a, b) => b.stok - a.stok);
+        } else if (sortSelect.value === "stokAsc") {
+          sorted.sort((a, b) => a.stok - b.stok);
+        }
+        renderTable(sorted);
+      });
+    });
+  </script>
+</body>
+</html>
