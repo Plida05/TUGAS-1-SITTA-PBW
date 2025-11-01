@@ -172,3 +172,55 @@ document.addEventListener("DOMContentLoaded", () => {
     result.classList.remove("hidden");
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tableBody = document.querySelector("#stokTable tbody");
+  const searchInput = document.getElementById("searchInput");
+  const sortSelect = document.getElementById("sortSelect");
+
+  let bahanAjar = [...dataBahanAjar];
+
+  function renderTable(data) {
+    tableBody.innerHTML = "";
+    if (data.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Tidak ada data ditemukan.</td></tr>`;
+      return;
+    }
+    data.forEach(item => {
+      const row = `
+        <tr>
+          <td>${item.kodeLokasi}</td>
+          <td>${item.kodeBarang}</td>
+          <td>${item.namaBarang}</td>
+          <td>${item.jenisBarang}</td>
+          <td>${item.edisi}</td>
+          <td>${item.stok}</td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML("beforeend", row);
+    });
+  }
+
+  renderTable(bahanAjar);
+
+  // 🔍 Pencarian
+  searchInput.addEventListener("keyup", () => {
+    const keyword = searchInput.value.toLowerCase();
+    const filtered = bahanAjar.filter(item =>
+      item.namaBarang.toLowerCase().includes(keyword) ||
+      item.kodeBarang.toLowerCase().includes(keyword)
+    );
+    renderTable(filtered);
+  });
+
+  // 🔽 Pengurutan stok
+  sortSelect.addEventListener("change", () => {
+    let sorted = [...bahanAjar];
+    if (sortSelect.value === "stokDesc") {
+      sorted.sort((a, b) => b.stok - a.stok);
+    } else if (sortSelect.value === "stokAsc") {
+      sorted.sort((a, b) => a.stok - b.stok);
+    }
+    renderTable(sorted);
+  });
+});

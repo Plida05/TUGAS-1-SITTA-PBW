@@ -9,34 +9,31 @@
 </head>
 <body class="login-page">
 
-  <!-- Logo Universitas Terbuka -->
-  <header class="login-header">
-    <img src="../logo.jpg" alt="Logo Universitas Terbuka" class="logo-login">
-    <h1>SITTA - Pemesanan Bahan Ajar</h1>
-    <p>Silakan login untuk melanjutkan</p>
-  </header>
+  <div class="login-wrapper">
+    <!-- Header -->
+    <header class="login-header">
+      <img src="../logo.jpg" alt="Logo Universitas Terbuka" class="logo-login">
+      <h1>SITTA - Pemesanan Bahan Ajar</h1>
+      <p>Silakan login untuk melanjutkan</p>
+    </header>
 
-  <!-- Form Login -->
-  <main class="login-container">
-    <form id="loginForm" novalidate>
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="nama@ut.ac.id" required>
+    <!-- Form Login -->
+    <main class="login-container">
+      <form id="loginForm" novalidate>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="nama@ut.ac.id" required>
 
-      <label for="password">Password</label>
-      <input id="password" type="password" placeholder="Masukkan password" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Masukkan password" required>
 
-      <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn-primary">Login</button>
 
-      <div class="login-links">
-        <button type="button" id="forgotBtn" class="link-btn">Lupa Password?</button>
-        <button type="button" id="registerBtn" class="link-btn">Daftar Akun Baru</button>
-      </div>
-    </form>
-  </main>
-
-  <!-- Modal box -->
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal" id="modalContent"></div>
+        <div class="login-links">
+          <button type="button" id="forgotBtn" class="link-btn">Lupa Password?</button>
+          <button type="button" id="registerBtn" class="link-btn">Daftar Akun Baru</button>
+        </div>
+      </form>
+    </main>
   </div>
 
 </body>
